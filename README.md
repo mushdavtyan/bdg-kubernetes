@@ -10,3 +10,4 @@ You can configure pipeline in your Jenkins instance(Docker also installed) by cr
 new text
 new text
 new text
+new text
