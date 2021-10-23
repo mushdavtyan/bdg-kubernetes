@@ -1,18 +1,16 @@
 pipeline {
-     agent any
-        environment {
-        registry = "amazon/registry"
+    agent any
+    environment{
+        registry = "252990216717.dkr.ecr.us-east-2.amazonaws.com/bdgdevops"
         registryCredential = 'AWS-ECR'
         dockerImage = ''
     }
-    stages {
-
-        stage ('checkout') {
-            steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/something.git']]])
-            }
+    stages{
+        stage ('checkout')
+        steps {
+             checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mushdavtyan/bdg-kubernetes.git']]])            }
+    }
         }
-       
         stage ('Build docker image') {
             steps {
                 script {
@@ -21,7 +19,7 @@ pipeline {
             }
         }
        
-         // Uploading Docker images into Docker Hub
+         // Uploading Docker images into ECR
          
     stage('Deploy image') {
         steps{
@@ -34,4 +32,5 @@ pipeline {
     }
   
     }  
+}
 }
