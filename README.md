@@ -1,6 +1,7 @@
 # python-docker-jenkins
 
 This a python based app and containerized.
+
 - Automating Docker image creation
 - Automating Docker image upload
 - Automating Docker container provisioning
